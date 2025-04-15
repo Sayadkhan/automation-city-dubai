@@ -11,6 +11,9 @@ import Login from "../pages/Login";
 import AdminLayout from "../layout/AdminLayout";
 import AdminDashboard from "../pages/AdminDashboard";
 import NotFound from "../components/NotFound/NotFound";
+import AdminFeaturedPlace from "../pages/AdminFeaturedPlace";
+import FeaturedPlaceAdd from "../pages/FeaturedPlaceAdd";
+import LogoUpload from "../pages/LogoUpload";
 
 export const route = createBrowserRouter([
   {
@@ -66,6 +69,18 @@ export const route = createBrowserRouter([
       {
         path: "/admin/dashboard",
         element: <AdminDashboard />,
+      },
+      {
+        path: "/admin/places",
+        element: <AdminFeaturedPlace />,
+      },
+      {
+        path: "/admin/place/add",
+        element: <FeaturedPlaceAdd />,
+      },
+      {
+        path: "/admin/upload/logo",
+        element: <LogoUpload />,
       },
     ],
   },

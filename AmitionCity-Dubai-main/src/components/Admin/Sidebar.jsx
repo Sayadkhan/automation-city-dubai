@@ -12,18 +12,19 @@ const Sidebar = () => {
   // Menu data - can be easily extended
   const menuData = [
     {
-      name: "Business",
-      link: "/admin/business",
+      name: "Places",
+      link: "/admin/places",
       submenu: [
-        { name: "Add Featured Place", link: "/admin/business/overview" },
+        { name: "All Featured Place", link: "/admin/places" },
+        { name: "Add Featured Place", link: "/admin/place/add" },
       ],
     },
     {
       name: "Settings",
       link: "/admin/settings",
       submenu: [
-        { name: "Add Logo", link: "/admin/settings/logo" },
-        { name: "Add Banner", link: "/admin/settings/banner" },
+        { name: "Add Logo", link: "/admin/upload/logo" },
+        { name: "Add Banner", link: "/admin/upload/banner" },
       ],
     },
   ];

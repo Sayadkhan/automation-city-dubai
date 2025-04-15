@@ -3,11 +3,14 @@ import upload from "../utils/upload.js";
 
 export const createFeaturedPlace = async (req, res) => {
   try {
+    // Handle file upload using multer
     upload.single("ImageUrl")(req, res, async (err) => {
       if (err) {
+        // Handle multer errors, e.g., file size, invalid file type, etc.
         return res.status(400).json({ message: err.message });
       }
 
+      // Get the PlaceName from the body
       const { PlaceName } = req.body;
 
       // Validate input
@@ -15,22 +18,25 @@ export const createFeaturedPlace = async (req, res) => {
         return res.status(400).json({ message: "PlaceName is required" });
       }
 
-      // Get the image URL from the file uploaded
+      // If file uploaded successfully, construct the file URL
       const ImageUrl = req.file
-        ? `/uploads/featuredPlaces/${req.file.filename}`
+        ? `/uploads/featuredPlaces/${req.file.filename}` // Correct path to the uploaded image
         : null;
 
       if (!ImageUrl) {
         return res.status(400).json({ message: "Image file is required" });
       }
 
+      // Create a new FeaturedPlace instance
       const newFeaturedPlace = new FeaturedPlace({
         PlaceName,
         ImageUrl,
       });
 
+      // Save the new FeaturedPlace to the database
       await newFeaturedPlace.save();
 
+      // Send success response
       return res.status(201).json({
         message: "Featured Place created successfully",
         data: newFeaturedPlace,
@@ -38,12 +44,12 @@ export const createFeaturedPlace = async (req, res) => {
     });
   } catch (error) {
     console.error(error);
+    // Return a server error response
     return res
       .status(500)
       .json({ message: "Error creating Featured Place", error });
   }
 };
-
 // Controller to delete a featured place by ID
 export const deleteFeaturedPlace = async (req, res) => {
   try {

@@ -1,18 +1,15 @@
 import mongoose from "mongoose";
 
-const FeaturedPlaceSchema = new mongoose.Schema(
-  {
-    PlaceName: {
-      type: String,
-      required: true,
-    },
-    ImageUrl: {
-      type: String,
-      default: null,
-    },
+const placeSchema = new mongoose.Schema({
+  placeName: {
+    type: String,
+    required: true,
   },
-  { timestamps: true }
-);
+  placeImageUrl: {
+    type: String,
+    required: true,
+  },
+});
 
-const FeaturedPlace = mongoose.model("SiteSettings", FeaturedPlaceSchema);
+const FeaturedPlace = mongoose.model("FeaturedPlace", placeSchema);
 export default FeaturedPlace;
