@@ -31,3 +31,30 @@ export const uploadPlace = async (req, res) => {
     res.status(500).json({ message: "Failed to upload place", error });
   }
 };
+
+// Get all featured places
+export const getAllFeaturedPlaces = async (req, res) => {
+  try {
+    const places = await FeaturedPlace.find();
+    res.status(200).json(places);
+  } catch (error) {
+    console.error("Error fetching places:", error);
+    res.status(500).json({ message: "Failed to fetch places", error });
+  }
+};
+
+export const deleteFeaturedPlace = async (req, res) => {
+  try {
+    const { id } = req.params;
+    const place = await FeaturedPlace.findByIdAndDelete(id);
+
+    if (!place) {
+      return res.status(404).json({ message: "Place not found" });
+    }
+
+    res.status(200).json({ message: "Place deleted successfully" });
+  } catch (error) {
+    console.error("Error deleting place:", error);
+    res.status(500).json({ message: "Failed to delete place", error });
+  }
+};

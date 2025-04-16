@@ -1,7 +1,11 @@
 import express from "express";
 import path from "path";
 
-import { uploadPlace } from "../controller/FeaturedPlaceController.js";
+import {
+  deleteFeaturedPlace,
+  getAllFeaturedPlaces,
+  uploadPlace,
+} from "../controller/FeaturedPlaceController.js";
 import multer from "multer";
 
 const router = express.Router();
@@ -20,12 +24,12 @@ const storage = multer.diskStorage({
 const upload = multer({ storage: storage });
 
 // Get all featured places
-// router.get("/all-featured", getAllFeaturedPlaces);
+router.get("/all-featured", getAllFeaturedPlaces);
 
 // Add a new featured place with an image
 router.post("/add-featured", upload.single("placeImage"), uploadPlace);
 
 // Delete a featured place by ID
-// router.delete("/delete-featured/:id", deleteFeaturedPlace);
+router.delete("/delete-featured/:id", deleteFeaturedPlace);
 
 export default router;
