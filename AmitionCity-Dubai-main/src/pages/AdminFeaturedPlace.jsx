@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { MdDelete } from "react-icons/md";
+
 const AdminFeaturedPlace = () => {
   const [places, setPlaces] = useState([]);
   const [message, setMessage] = useState("");
@@ -24,12 +25,11 @@ const AdminFeaturedPlace = () => {
   // Handle place deletion
   const handleDelete = async (id) => {
     try {
-      // Send DELETE request to backend
       const response = await axios.delete(
         `http://localhost:5000/api/delete-featured/${id}`
       );
       setMessage(response.data.message);
-      // Update the state by removing the deleted place
+      // Refresh the list after deletion
       setPlaces(places.filter((place) => place._id !== id));
     } catch (error) {
       setMessage("Error deleting place");
@@ -37,13 +37,15 @@ const AdminFeaturedPlace = () => {
     }
   };
 
-  // Mark the place as "Best" (toggle between night and light mode styles)
+  // Handle toggling the "Best" status
   const handleBestPlace = async (id) => {
     try {
       const updatedPlaces = places.map((place) =>
         place._id === id ? { ...place, isBest: !place.isBest } : place
       );
       setPlaces(updatedPlaces);
+
+      // Optionally, you can make a request to the backend to update the "Best" status in the database.
       setMessage("Place status updated successfully.");
     } catch (error) {
       console.error("Error updating best place:", error);
@@ -81,25 +83,13 @@ const AdminFeaturedPlace = () => {
                       className="w-16 h-16 object-cover rounded-md"
                     />
                   </td>
-                  <td className="px-4 py-2 flex items-center space-x-4">
+                  <td className="px-4 py-2 flex items-center justify-center text-center space-x-4">
                     {/* Delete Icon (Trash Icon) */}
                     <button
                       onClick={() => handleDelete(place._id)}
                       className="text-red-600 hover:text-red-800"
                     >
                       <MdDelete size={24} />
-                    </button>
-
-                    {/* Best Button (Night Mode / Light Mode Toggle) */}
-                    <button
-                      onClick={() => handleBestPlace(place._id)}
-                      className={`${
-                        place.isBest
-                          ? "bg-yellow-500 text-gray-800"
-                          : "bg-blue-500 text-white"
-                      } py-1 px-3 rounded-md hover:bg-opacity-80`}
-                    >
-                      {place.isBest ? "Best Place" : "Mark as Best"}
                     </button>
                   </td>
                 </tr>

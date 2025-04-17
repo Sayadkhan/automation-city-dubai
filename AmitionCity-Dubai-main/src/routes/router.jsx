@@ -14,6 +14,8 @@ import NotFound from "../components/NotFound/NotFound";
 import AdminFeaturedPlace from "../pages/AdminFeaturedPlace";
 import FeaturedPlaceAdd from "../pages/FeaturedPlaceAdd";
 import LogoUpload from "../pages/LogoUpload";
+import BannerUpload from "../pages/BannerUpload";
+import SocailMediaPage from "../pages/SocailMediaPage";
 
 export const route = createBrowserRouter([
   {
@@ -81,6 +83,14 @@ export const route = createBrowserRouter([
       {
         path: "/admin/upload/logo",
         element: <LogoUpload />,
+      },
+      {
+        path: "/admin/upload/banner",
+        element: <BannerUpload />,
+      },
+      {
+        path: "/admin/add/socail-media",
+        element: <SocailMediaPage />,
       },
     ],
   },

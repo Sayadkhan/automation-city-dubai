@@ -6,7 +6,9 @@ import bodyParser from "body-parser";
 import connectDB from "./utils/bd.js";
 import authRoute from "./routes/authRoute.js";
 import featuredRoute from "./routes/featuredRoute.js";
-import seattingRoute from "./routes/seattingRoute.js"; // Assuming you have a route for uploading logos
+import seattingRoute from "./routes/seattingRoute.js";
+import socailMediaRoute from "./routes/socialMediaRoutes.js";
+import bannerRoute from "./routes/bannerRoute.js";
 import multer from "multer";
 import path from "path";
 
@@ -43,7 +45,9 @@ app.use(
 // Define routes
 app.use("/api/auth", authRoute);
 app.use("/api", featuredRoute);
-app.use("/api/upload", seattingRoute); // Assuming you have a route for uploading logos
+app.use("/api/banner", bannerRoute);
+app.use("/api/socila", socailMediaRoute); // Assuming you have a route for featured items
+app.use("/api/upload", seattingRoute);
 
 // Database Connection and Server Start
 connectDB()

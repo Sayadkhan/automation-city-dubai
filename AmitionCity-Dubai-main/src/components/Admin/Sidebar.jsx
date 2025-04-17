@@ -27,6 +27,14 @@ const Sidebar = () => {
         { name: "Add Banner", link: "/admin/upload/banner" },
       ],
     },
+    {
+      name: "Social Media",
+      link: "/admin/Social",
+      submenu: [
+        { name: "Add Socail Media", link: "/admin/add/socail-media" },
+        { name: "Mennage Social Media", link: "/admin/eidt/social-media" },
+      ],
+    },
   ];
 
   const toggleDropdown = (menu) => {
