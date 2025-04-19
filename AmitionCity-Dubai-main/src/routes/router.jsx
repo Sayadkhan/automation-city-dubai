@@ -17,6 +17,7 @@ import LogoUpload from "../pages/LogoUpload";
 import BannerUpload from "../pages/BannerUpload";
 import SocailMediaPage from "../pages/SocailMediaPage";
 import ContactPage from "../pages/ContactPage";
+import RegistionPage from "../pages/RegistionPage";
 
 export const route = createBrowserRouter([
   {
@@ -58,6 +59,10 @@ export const route = createBrowserRouter([
       {
         path: "/login",
         element: <Login />,
+      },
+      {
+        path: "/register",
+        element: <RegistionPage />,
       },
     ],
   },

@@ -1,18 +1,15 @@
 import React, { useState } from "react";
-import axiosInstance from "../api/axios"; // Assuming axios instance is configured
-import { Link, useNavigate } from "react-router";
+import axiosInstance from "../api/axios";
 
 // Example: Replace with an actual travel-themed image URL
 const backgroundImageUrl =
   "https://images.unsplash.com/photo-1507525428034-b723cf961d3e?ixlib=rb-1.2.1&auto=format&fit=crop&w=1353&q=80"; // Example: Beach sunset
 
-const Login = () => {
+const RegistionPage = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
   const [loading, setLoading] = useState(false);
-
-  const navigate = useNavigate(); // Assuming you're using react-router for navigation
 
   const handleSubmit = async (event) => {
     event.preventDefault();
@@ -26,18 +23,18 @@ const Login = () => {
     }
 
     try {
-      const response = await axiosInstance.post("/auth/login", {
+      const response = await axiosInstance.post("/auth/register", {
         email,
         password,
       });
-
       const { token, user } = response.data;
 
       localStorage.setItem("token", token);
 
       localStorage.setItem("user", JSON.stringify(user));
 
-      navigate("/admin/dashboard"); // Redirect to dashboard after successful login
+      console.log("Login successful!");
+      alert(`Welcome back, ${user.name}!`);
 
       // window.location.href = "/dashboard";
     } catch (err) {
@@ -137,30 +134,16 @@ const Login = () => {
               disabled={loading} // Disable button while loading
               className="flex justify-center w-full px-4 py-2 text-sm font-medium text-white bg-indigo-600 border border-transparent rounded-md shadow-sm hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 transition duration-150 ease-in-out"
             >
-              {loading ? "Logging in..." : "Let's Go!"}{" "}
+              {loading ? "Sign up..." : "Register"}{" "}
               {/* Show loading state text */}
             </button>
           </div>
 
           {/* Additional Links */}
-          <div className="flex items-center justify-between text-sm">
-            <Link
-              href="/forgot-password"
-              className="font-medium text-indigo-600 hover:text-indigo-500 hover:underline"
-            >
-              Forgot Password?
-            </Link>
-            <Link
-              href="/register"
-              className="font-medium text-indigo-600 hover:text-indigo-500 hover:underline"
-            >
-              Create Account
-            </Link>
-          </div>
         </form>
       </div>
     </div>
   );
 };
 
-export default Login;
+export default RegistionPage;

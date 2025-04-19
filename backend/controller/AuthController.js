@@ -12,9 +12,7 @@ export const register = async (req, res) => {
 
     // Validate input
     if (!email || !password) {
-      return res
-        .status(400)
-        .json({ error: "Email, password, and logo are required" });
+      return res.status(400).json({ error: "Email, password,  are required" });
     }
 
     // Check if user already exists
