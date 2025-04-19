@@ -1,6 +1,5 @@
-// backend/routes/socialMediaRoutes.js
 import express from "express";
-
+import path from "path";
 import multer from "multer";
 import {
   addSocialMediaLink,
@@ -9,10 +8,9 @@ import {
 
 const router = express.Router();
 
-// Multer middleware for uploading social media icons
 const upload = multer({
   storage: multer.diskStorage({
-    destination: (req, file, cb) => cb(null, "./uploads/social-media-icons"),
+    destination: (req, file, cb) => cb(null, "./uploads"),
     filename: (req, file, cb) =>
       cb(null, Date.now() + path.extname(file.originalname)),
   }),

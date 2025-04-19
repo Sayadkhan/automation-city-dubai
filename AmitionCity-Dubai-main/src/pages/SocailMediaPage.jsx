@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
+import { MdDelete } from "react-icons/md";
 
 const SocailMediaPage = () => {
   const [socialMedia, setSocialMedia] = useState({
@@ -15,7 +16,7 @@ const SocailMediaPage = () => {
     const fetchSocialLinks = async () => {
       try {
         const response = await axios.get(
-          "http://localhost:5000/api/social-media/all"
+          "http://localhost:5000/api/social/all"
         );
         setSocialLinks(response.data); // Set fetched data
       } catch (error) {
@@ -68,7 +69,7 @@ const SocailMediaPage = () => {
 
       // Refresh the social media list
       const updatedLinks = await axios.get(
-        "http://localhost:5000/api/social-media/all"
+        "http://localhost:5000/api/social/all"
       );
       setSocialLinks(updatedLinks.data);
     } catch (error) {
@@ -81,7 +82,7 @@ const SocailMediaPage = () => {
   const handleRemove = async (id) => {
     try {
       const response = await axios.delete(
-        `http://localhost:5000/api/social-media/delete/${id}`
+        `http://localhost:5000/api/social/delete/${id}`
       );
       setMessage(response.data.message);
 
@@ -149,21 +150,21 @@ const SocailMediaPage = () => {
 
       {/* Displaying all social media links */}
       <h3 className="text-xl font-bold mb-4">All Social Media Links</h3>
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
-        {socialLinks.length > 0 ? (
-          socialLinks.map((social) => (
-            <div
-              key={social._id}
-              className="relative border rounded-lg p-4 bg-gray-100 hover:bg-gray-200 transition duration-300"
-            >
-              <div className="flex items-center space-x-4">
-                <img
-                  src={`http://localhost:5000${social.iconUrl}`}
-                  alt={social.name}
-                  className="w-12 h-12 object-cover rounded-full"
-                />
-                <div>
-                  <h4 className="font-medium text-lg">{social.name}</h4>
+      <table className="min-w-full table-auto border-collapse border">
+        <thead>
+          <tr className="bg-gray-100">
+            <th className="px-4 py-2 border">Social Media Name</th>
+            <th className="px-4 py-2 border">Link</th>
+            <th className="px-4 py-2 border">Icon</th>
+            <th className="px-4 py-2 border">Actions</th>
+          </tr>
+        </thead>
+        <tbody>
+          {socialLinks.length > 0 ? (
+            socialLinks.map((social) => (
+              <tr key={social._id} className="border-b">
+                <td className="px-4 py-2">{social.name}</td>
+                <td className="px-4 py-2">
                   <a
                     href={social.link}
                     target="_blank"
@@ -172,22 +173,33 @@ const SocailMediaPage = () => {
                   >
                     {social.link}
                   </a>
-                </div>
-              </div>
-
-              {/* Delete Button (Trash Icon) */}
-              <button
-                onClick={() => handleRemove(social._id)}
-                className="absolute top-2 right-2 p-2 bg-black bg-opacity-50 text-white rounded-full opacity-0 hover:opacity-100 transition-opacity"
-              >
-                <i className="fas fa-trash-alt text-lg"></i>
-              </button>
-            </div>
-          ))
-        ) : (
-          <p>No social media links added yet.</p>
-        )}
-      </div>
+                </td>
+                <td className="px-4 py-2">
+                  <img
+                    src={`http://localhost:5000${social.iconUrl}`}
+                    alt={social.name}
+                    className="w-12 h-12 object-cover rounded-full"
+                  />
+                </td>
+                <td className="px-4 py-2 text-center">
+                  <button
+                    onClick={() => handleRemove(social._id)}
+                    className="bg-red-500 text-white py-1 px-3 rounded-md hover:bg-red-600"
+                  >
+                    <MdDelete className="text-lg" />
+                  </button>
+                </td>
+              </tr>
+            ))
+          ) : (
+            <tr>
+              <td colSpan="4" className="px-4 py-2 text-center text-gray-500">
+                No social media links added yet.
+              </td>
+            </tr>
+          )}
+        </tbody>
+      </table>
     </div>
   );
 };

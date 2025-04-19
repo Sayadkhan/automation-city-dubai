@@ -31,8 +31,8 @@ const Sidebar = () => {
       name: "Social Media",
       link: "/admin/Social",
       submenu: [
-        { name: "Add Socail Media", link: "/admin/add/socail-media" },
-        { name: "Mennage Social Media", link: "/admin/eidt/social-media" },
+        { name: "Mennage Social Media", link: "/admin/add/socail-media" },
+        { name: "Mennage contact Number", link: "/admin/add/contact" },
       ],
     },
   ];

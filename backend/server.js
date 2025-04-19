@@ -9,6 +9,7 @@ import featuredRoute from "./routes/featuredRoute.js";
 import seattingRoute from "./routes/seattingRoute.js";
 import socailMediaRoute from "./routes/socialMediaRoutes.js";
 import bannerRoute from "./routes/bannerRoute.js";
+import contactRoute from "./routes/contactRoutes.js";
 import multer from "multer";
 import path from "path";
 
@@ -46,8 +47,9 @@ app.use(
 app.use("/api/auth", authRoute);
 app.use("/api", featuredRoute);
 app.use("/api/banner", bannerRoute);
-app.use("/api/socila", socailMediaRoute); // Assuming you have a route for featured items
+app.use("/api/social", socailMediaRoute); // Assuming you have a route for featured items
 app.use("/api/upload", seattingRoute);
+app.use("api/contact", contactRoute);
 
 // Database Connection and Server Start
 connectDB()

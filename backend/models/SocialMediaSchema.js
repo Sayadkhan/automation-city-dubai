@@ -6,4 +6,6 @@ const socialMediaSchema = new mongoose.Schema({
   iconUrl: { type: String, required: true },
 });
 
-export default mongoose.model("SocialMedia", socialMediaSchema);
+const SocialMedia = mongoose.model("SocialMedia", socialMediaSchema);
+
+export default SocialMedia;

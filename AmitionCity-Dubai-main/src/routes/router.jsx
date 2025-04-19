@@ -16,6 +16,7 @@ import FeaturedPlaceAdd from "../pages/FeaturedPlaceAdd";
 import LogoUpload from "../pages/LogoUpload";
 import BannerUpload from "../pages/BannerUpload";
 import SocailMediaPage from "../pages/SocailMediaPage";
+import ContactPage from "../pages/ContactPage";
 
 export const route = createBrowserRouter([
   {
@@ -91,6 +92,10 @@ export const route = createBrowserRouter([
       {
         path: "/admin/add/socail-media",
         element: <SocailMediaPage />,
+      },
+      {
+        path: "/admin/add/contact",
+        element: <ContactPage />,
       },
     ],
   },

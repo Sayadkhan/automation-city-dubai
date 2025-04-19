@@ -2,7 +2,7 @@
 
 import multer from "multer";
 import path from "path";
-import SocialMediaSchema from "../models/SocialMediaSchema.js";
+import SocialMedia from "../models/SocialMediaSchema.js";
 
 // Configure multer for icon file upload
 const storage = multer.diskStorage({
@@ -24,10 +24,10 @@ export const addSocialMediaLink = async (req, res) => {
     }
 
     // Create a new social media entry
-    const newSocialMedia = new SocialMediaSchema({
+    const newSocialMedia = new SocialMedia({
       name: req.body.name,
       link: req.body.link,
-      iconUrl: `/uploads/social-media-icons/${req.file.filename}`,
+      iconUrl: `/uploads/${req.file.filename}`,
     });
 
     // Save to the database
