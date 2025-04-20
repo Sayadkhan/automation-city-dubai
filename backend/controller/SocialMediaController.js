@@ -23,11 +23,12 @@ export const addSocialMediaLink = async (req, res) => {
       return res.status(400).json({ message: "All fields are required" });
     }
 
+    const baseUrl = process.env.URL;
     // Create a new social media entry
     const newSocialMedia = new SocialMedia({
       name: req.body.name,
       link: req.body.link,
-      iconUrl: `/uploads/${req.file.filename}`,
+      iconUrl: `${baseUrl}/uploads/${req.file.filename}`,
     });
 
     // Save to the database
@@ -53,5 +54,23 @@ export const getAllSocialMediaLinks = async (req, res) => {
     res
       .status(500)
       .json({ message: "Failed to fetch social media links", error });
+  }
+};
+
+export const deleteSocialMediaLink = async (req, res) => {
+  try {
+    const { id } = req.params;
+    const socialMediaLink = await SocialMedia.findByIdAndDelete(id);
+
+    if (!socialMediaLink) {
+      return res.status(404).json({ message: "Social Media link not found" });
+    }
+
+    res.status(200).json({ message: "Social Media link deleted successfully" });
+  } catch (error) {
+    console.error("Error deleting social media link:", error);
+    res
+      .status(500)
+      .json({ message: "Failed to delete social media link", error });
   }
 };

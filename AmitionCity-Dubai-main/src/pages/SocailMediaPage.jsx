@@ -16,7 +16,7 @@ const SocailMediaPage = () => {
     const fetchSocialLinks = async () => {
       try {
         const response = await axios.get(
-          "http://localhost:5000/api/social/all"
+          `${import.meta.env.VITE_APP_URL}/api/social/all`
         );
         setSocialLinks(response.data); // Set fetched data
       } catch (error) {
@@ -57,7 +57,7 @@ const SocailMediaPage = () => {
 
     try {
       const response = await axios.post(
-        "http://localhost:5000/api/social/add",
+        `${import.meta.env.VITE_APP_URL}/api/social/add`,
         formData,
         {
           headers: {
@@ -69,7 +69,7 @@ const SocailMediaPage = () => {
 
       // Refresh the social media list
       const updatedLinks = await axios.get(
-        "http://localhost:5000/api/social/all"
+        `${import.meta.env.VITE_APP_URL}/api/social/all`
       );
       setSocialLinks(updatedLinks.data);
     } catch (error) {
@@ -82,7 +82,7 @@ const SocailMediaPage = () => {
   const handleRemove = async (id) => {
     try {
       const response = await axios.delete(
-        `http://localhost:5000/api/social/delete/${id}`
+        `${import.meta.env.VITE_APP_URL}/api/social/delete/${id}`
       );
       setMessage(response.data.message);
 
@@ -176,7 +176,7 @@ const SocailMediaPage = () => {
                 </td>
                 <td className="px-4 py-2">
                   <img
-                    src={`http://localhost:5000${social.iconUrl}`}
+                    src={social.iconUrl}
                     alt={social.name}
                     className="w-12 h-12 object-cover rounded-full"
                   />

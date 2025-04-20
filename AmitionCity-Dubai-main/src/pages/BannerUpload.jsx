@@ -12,7 +12,7 @@ const BannerUpload = () => {
     const fetchBanners = async () => {
       try {
         const response = await axios.get(
-          "http://localhost:5000/api/banner/all-banners"
+          `${import.meta.env.VITE_APP_URL}/api/banner/all-banners`
         );
         setUploadedBanners(response.data); // Set banners data
       } catch (error) {
@@ -45,7 +45,7 @@ const BannerUpload = () => {
 
     try {
       const response = await axios.post(
-        "http://localhost:5000/api/banner/upload",
+        `${import.meta.env.VITE_APP_URL}/api/banner/upload`,
         formData,
         {
           headers: {
@@ -57,7 +57,7 @@ const BannerUpload = () => {
       setMessage(response.data.message); // Show success message
       // Refresh the banner list after upload
       const updatedBanners = await axios.get(
-        "http://localhost:5000/api/banner/all-banners"
+        `${import.meta.env.VITE_APP_URL}/api/banner/all-banners`
       );
       setUploadedBanners(updatedBanners.data);
     } catch (error) {
@@ -70,7 +70,7 @@ const BannerUpload = () => {
   const handleRemoveBanner = async (id) => {
     try {
       const response = await axios.delete(
-        `http://localhost:5000/api/banner/delete-banner/${id}`
+        `${import.meta.env.VITE_APP_URL}/api/banner/delete-banner/${id}`
       );
       setMessage(response.data.message);
       // Update the banner list after deletion
@@ -120,7 +120,7 @@ const BannerUpload = () => {
                 onMouseEnter={(e) => (e.target.style.cursor = "pointer")}
               >
                 <img
-                  src={`http://localhost:5000${banner.bannerImageUrl}`}
+                  src={banner.bannerImageUrl}
                   alt="Banner"
                   className="w-full h-32 object-cover rounded-md"
                 />

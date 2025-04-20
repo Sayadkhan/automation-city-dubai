@@ -24,9 +24,10 @@ export const uploadBanners = async (req, res) => {
       return res.status(400).json({ message: "No banners uploaded" });
     }
 
+    const baseUrl = process.env.URL;
     // Store all banner image URLs in the database
     const banners = req.files.map((file) => ({
-      bannerImageUrl: `/uploads/${file.filename}`,
+      bannerImageUrl: `${baseUrl}/uploads/${file.filename}`,
     }));
 
     // Save all banners to the database

@@ -36,7 +36,7 @@ const FeaturedPlaceAdd = () => {
 
     try {
       const response = await axios.post(
-        "http://localhost:5000/api/add-featured", // Make sure the endpoint is correct
+        `${import.meta.env.VITE_APP_URL}/api/add-featured`, // Make sure the endpoint is correct
         formData,
         {
           headers: {

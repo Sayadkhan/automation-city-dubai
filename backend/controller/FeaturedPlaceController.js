@@ -12,8 +12,10 @@ export const uploadPlace = async (req, res) => {
         .json({ message: "Place name and image are required" });
     }
 
+    const baseUrl = process.env.URL;
+    const placeImageUrl = `${baseUrl}/uploads/${req.file.filename}`;
+
     // Create a new place document
-    const placeImageUrl = `/uploads/${req.file.filename}`;
     const newPlace = new FeaturedPlace({
       placeName: req.body.placeName,
       placeImageUrl,

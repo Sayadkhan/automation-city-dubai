@@ -8,9 +8,10 @@ export const uploadLogo = async (req, res) => {
       return res.status(400).json({ message: "No file uploaded" });
     }
 
+    const baseUrl = process.env.URL;
     // Create a new logo document
     const newLogo = new logo({
-      logoUrl: `/uploads/${req.file.filename}`,
+      logoUrl: `${baseUrl}/uploads/${req.file.filename}`,
     });
 
     // Save the logo document to MongoDB

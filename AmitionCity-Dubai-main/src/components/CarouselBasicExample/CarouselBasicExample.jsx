@@ -99,7 +99,7 @@ const CarouselBasicExample = ({ uploadedBanners }) => {
             className="text-white flex-none w-full flex flex-col items-center justify-center snap-center rounded-4xl z-30"
             // {`http://localhost:5000${banner.bannerImageUrl}`}
             style={{
-              backgroundImage: `url(http://localhost:5000${slide.bannerImageUrl})`,
+              backgroundImage: `url(${slide.bannerImageUrl})`,
               backgroundSize: "cover",
               backgroundPosition: "center",
             }}

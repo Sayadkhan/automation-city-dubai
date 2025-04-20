@@ -36,7 +36,7 @@ app.use("/uploads", express.static(path.join(__dirname, "uploads")));
 // CORS setup
 app.use(
   cors({
-    origin: process.env.CLIENT_URL || "http://localhost:5173", // Frontend URL
+    origin: process.env.CLIENT_URL || "https://ambitioncitytravel.com", // Frontend URL
     credentials: true,
     allowedHeaders: ["Authorization", "Content-Type"],
     methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],

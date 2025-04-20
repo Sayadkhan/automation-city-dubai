@@ -157,7 +157,7 @@ const ProductSlider = ({ places }) => {
               <div className="relative group">
                 <div className="shadow-md relative">
                   <img
-                    src={`http://localhost:5000${product.placeImageUrl}`}
+                    src={product.placeImageUrl}
                     alt={product.name}
                     className="w-full transition-transform duration-300"
                   />

@@ -22,7 +22,7 @@ const Home = () => {
     const fetchPlaces = async () => {
       try {
         const response = await axios.get(
-          "http://localhost:5000/api/all-featured"
+          `${import.meta.env.VITE_APP_URL}/api/all-featured`
         );
         setPlaces(response.data);
       } catch (error) {
@@ -38,7 +38,7 @@ const Home = () => {
     const fetchBanners = async () => {
       try {
         const response = await axios.get(
-          "http://localhost:5000/api/banner/all-banners"
+          `${import.meta.env.VITE_APP_URL}/api/banner/all-banners`
         );
         setUploadedBanners(response.data); // Set banners data
       } catch (error) {

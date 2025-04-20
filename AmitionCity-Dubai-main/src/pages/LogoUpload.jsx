@@ -24,7 +24,7 @@ const LogoUpload = () => {
 
     try {
       const response = await axios.post(
-        "http://localhost:5000/api/upload/logo",
+        `${import.meta.env.VITE_APP_URL}/api/upload/logo`,
         formData,
         {
           headers: {

@@ -62,7 +62,7 @@ const Footer = () => {
     const fetchSocialLinks = async () => {
       try {
         const response = await axios.get(
-          "http://localhost:5000/api/social/all"
+          `${import.meta.env.VITE_APP_URL}/api/social/all`
         );
         setSocialLinks(response.data); // Set fetched data
       } catch (error) {
@@ -156,7 +156,7 @@ const Footer = () => {
                   className="w-10 h-10 bg-gray-100 rounded-full flex items-center justify-center hover:bg-gray-200 transition-colors"
                 >
                   <img
-                    src={`http://localhost:5000${social.iconUrl}`}
+                    src={social.iconUrl}
                     alt={social.name}
                     className="w-5 h-5 object-contain"
                   />
@@ -168,9 +168,7 @@ const Footer = () => {
 
         {/* Copyright */}
         <div className="text-center text-gray-600">
-          <p>
-            © {currentYear} Ambition Travel & Tourism UI. All rights reserved.
-          </p>
+          <p>© {currentYear} Design and develop by Sailor digital.</p>
         </div>
       </div>
     </footer>

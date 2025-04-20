@@ -11,7 +11,7 @@ const AdminFeaturedPlace = () => {
     const fetchPlaces = async () => {
       try {
         const response = await axios.get(
-          "http://localhost:5000/api/all-featured"
+          `${import.meta.env.VITE_APP_URL}/api/all-featured`
         );
         setPlaces(response.data);
       } catch (error) {
@@ -26,7 +26,7 @@ const AdminFeaturedPlace = () => {
   const handleDelete = async (id) => {
     try {
       const response = await axios.delete(
-        `http://localhost:5000/api/delete-featured/${id}`
+        `${import.meta.env.VITE_APP_URL}/api/delete-featured/${id}`
       );
       setMessage(response.data.message);
       // Refresh the list after deletion
@@ -78,7 +78,8 @@ const AdminFeaturedPlace = () => {
                   <td className="px-4 py-2">{place.placeName}</td>
                   <td className="px-4 py-2">
                     <img
-                      src={`http://localhost:5000${place.placeImageUrl}`}
+                      // src={`http://localhost:5000${place.placeImageUrl}`}
+                      src={place.placeImageUrl}
                       alt={place.placeName}
                       className="w-16 h-16 object-cover rounded-md"
                     />

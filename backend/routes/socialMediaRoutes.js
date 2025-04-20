@@ -3,6 +3,7 @@ import path from "path";
 import multer from "multer";
 import {
   addSocialMediaLink,
+  deleteSocialMediaLink,
   getAllSocialMediaLinks,
 } from "../controller/SocialMediaController.js";
 
@@ -21,5 +22,6 @@ router.post("/add", upload.single("icon"), addSocialMediaLink);
 
 // GET endpoint to fetch all social media links
 router.get("/all", getAllSocialMediaLinks);
+router.delete("/delete/:id", deleteSocialMediaLink);
 
 export default router;
